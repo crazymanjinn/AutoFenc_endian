@@ -1,7 +1,7 @@
 " File:    AutoFenc_endian.vim
 " Brief:   Tries to automatically detect file encoding.
 " Author:  crazymanjinn
-" Version: 1.5.4
+" Version: 1.5.5
 "
 " Description:
 "   A Vim plugin that tries to automatically detect and set file encoding when
@@ -370,7 +370,7 @@ function s:ExtProgEncodingDetection()
 				let ext_prog_cmd = g:autofenc_ext_prog_path.' -L czech '.s:SafeShellescape(file_path).' | grep reversed'
 				let endian = system(ext_prog_cmd)
 				if !empty(endian)
-					enc == enc.'le'
+					let enc = enc.'le'
 				endif
 			endif
 
