@@ -1,11 +1,13 @@
-" File:    AutoFenc.vim
+" File:    AutoFenc_endian.vim
 " Brief:   Tries to automatically detect file encoding.
-" Author:  Petr Zemek <s3rvac@gmail.com>
-" Version: 1.5.1
+" Author:  crazymanjinn
+" Version: 1.5.2
 "
 " Description:
 "   A Vim plugin that tries to automatically detect and set file encoding when
 "   opening a file. See https://github.com/s3rvac/AutoFenc for more details.
+"
+"   Modified by crazymanjinn to deal with endianness in utf-16 files
 "
 " License:
 "   Copyright (C) 2009-2014 Petr Zemek
@@ -364,6 +366,15 @@ function s:ExtProgEncodingDetection()
 
 		if enc != g:autofenc_ext_prog_unknown_fenc
 			" The encoding was (probably) detected successfully.
+
+			if enc == 'UCS-2'
+				let ext_prog_cmd = g:autofenc_ext_prog_path.' -L czech'.s:SafeShellEscape(file_path).' | grep reversed'
+				let endian = system(ext_prog_cmd)
+				if !empty(endian)
+					enc == enc.'le'
+				endif
+			endif
+
 			return enc
 		endif
 	endif
