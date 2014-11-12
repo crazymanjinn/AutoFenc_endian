@@ -194,4 +194,6 @@ Distributed under GNU GPLv2:
     more details.
 
     You should have received a copy of the GNU General Public License
-    along with this program. If not, see <http://www.gnu.org/licenses/>.
+    along with this program. If not, see <http://www.gnu.org/licenses/>.Modified by crazymanjinn to deal with endianness in utf-16 files
+
+Modified by crazymanjinn to deal with endianness in utf-16 files
